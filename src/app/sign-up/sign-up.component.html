@@ -1,0 +1,71 @@
+<form [formGroup]="signUpForm" (ngSubmit)="signUp()">
+  <div class="field">
+    <p class="control has-icons-left has-icons-right">
+      <label class="input-label">Username: </label>
+      <input
+        class="input"
+        type="text"
+        placeholder="Username"
+        formControlName="username"
+      />
+      <span class="icon is-small is-left">
+        <i class="fas fa-envelope"></i>
+      </span>
+      <span class="icon is-small is-right">
+        <i class="fas fa-check"></i>
+      </span>
+    </p>
+  </div>
+  <div class="field">
+    <p class="control has-icons-left has-icons-right">
+      <label class="input-label">Email: </label>
+      <input
+        class="input"
+        type="email"
+        placeholder="Email"
+        formControlName="email"
+      />
+      <span class="icon is-small is-left">
+        <i class="fas fa-envelope"></i>
+      </span>
+      <span class="icon is-small is-right">
+        <i class="fas fa-check"></i>
+      </span>
+    </p>
+  </div>
+  <div class="field">
+    <p class="control has-icons-left">
+      <label class="input-label">Password: </label>
+      <input
+        class="input"
+        type="password"
+        placeholder="Password"
+        formControlName="password"
+      />
+      <span class="icon is-small is-left">
+        <i class="fas fa-lock"></i>
+      </span>
+    </p>
+  </div>
+  <div class="field">
+    <p class="control has-icons-left">
+      <label class="input-label">Profile Pic: </label>
+      <input
+        class="input"
+        type="file"
+        placeholder="Password"
+        formControlName="password"
+        accept="image/png, image/jpg, image/jpeg"
+        (change)="verifyImage($event)"
+      />
+      <span class="icon is-small is-left">
+        <i class="fas fa-lock"></i>
+      </span>
+    </p>
+  </div>
+  <div class="field">
+    <p class="control">
+      <button class="button is-success">Sign Up</button>
+    </p>
+  </div>
+</form>
