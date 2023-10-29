@@ -22,7 +22,7 @@ export class SignUpComponent {
 
 
   signUp(){
-
+    console.log(this.signUpForm.value);
   }
 
   verifyImage(event: any){
