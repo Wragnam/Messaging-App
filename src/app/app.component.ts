@@ -37,6 +37,9 @@ export class AppComponent {
     this.router.navigate(['/sign-up']);
   }
 
+  goHome(){
+    this.router.navigate(['main-screen']);
+  }
   /**
    * Boolean value toggled: Is navbar-mobile toggled?
    */

@@ -3,23 +3,14 @@
   role="navigation"
   aria-label="main navigation"
 >
-  <div class="navbar-brand">
+  <div class="navbar-brand" (click)="goHome()">
     <a class="navbar-item">
-      <img src="../assets/images/logo.jpg" width="40" height="40" />
-    </a>
-
-    <a
-      #burger
-      (click)="toggle()"
-      role="button"
-      class="navbar-burger"
-      aria-label="menu"
-      aria-expanded="false"
-      data-target="navbarBasicExample"
-    >
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
+      <img
+        class="homeImage"
+        src="../assets/images/logo.jpg"
+        width="40"
+        height="40"
+      />
     </a>
   </div>
   <div class="dropdown">
