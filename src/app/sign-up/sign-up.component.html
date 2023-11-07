@@ -8,6 +8,7 @@
           type="text"
           placeholder="Username"
           formControlName="username"
+          (change)="checkUsername()"
         />
         <span class="icon is-small is-left">
           <i class="fas fa-envelope"></i>
@@ -65,8 +66,18 @@
     </div>
     <div class="field">
       <p class="control">
-        <button class="button is-success">Sign Up</button>
+        <button [disabled]="!signUpForm.valid" class="button is-success">
+          Sign Up
+        </button>
       </p>
     </div>
+    <div id="have-Account">
+      <div>Already have an account go to:</div>
+      <a id="go-login" href="/login">login</a>
+    </div>
   </form>
+  <div id="is-success-show">
+    <h1 id="success-header">Successfully Signed Up!</h1>
+    <button id="logIn">Continue to Log In</button>
+  </div>
 </body>

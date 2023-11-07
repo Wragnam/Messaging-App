@@ -13,7 +13,7 @@
       />
     </a>
   </div>
-  <div class="dropdown">
+  <div *ngIf="!loggedIn" class="dropdown">
     <button class="dropbtn">Sign Up/Login</button>
     <div class="dropdown-content">
       <a class="button is-primary" routerLink="/sign-up" href="#">
@@ -21,6 +21,17 @@
       </a>
       <a class="button is-primary" routerLink="/login" href="#">
         <strong>Log In</strong>
+      </a>
+    </div>
+  </div>
+  <div *ngIf="loggedIn" class="dropdown">
+    <button class="dropbtn">Information</button>
+    <div class="dropdown-content">
+      <a class="button is-primary" routerLink="/profile" href="#">
+        <strong>Profile</strong>
+      </a>
+      <a class="button is-primary" routerLink="/about" href="#">
+        <strong>About</strong>
       </a>
     </div>
   </div>

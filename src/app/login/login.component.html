@@ -2,12 +2,12 @@
   <form [formGroup]="loginForm" (ngSubmit)="login()" class="form">
     <div class="field">
       <p class="control has-icons-left has-icons-right">
-        <label class="input-label">Email: </label>
+        <label class="input-label">Username: </label>
         <input
           class="input"
-          type="email"
-          placeholder="Email"
-          formControlName="email"
+          type="text"
+          placeholder="Username"
+          formControlName="username"
         />
         <span class="icon is-small is-left">
           <i class="fas fa-envelope"></i>
@@ -41,7 +41,9 @@
     </div>
     <div class="field">
       <p class="control">
-        <button class="button is-success">Login</button>
+        <button [disabled]="!loginForm.valid" class="button is-success">
+          Login
+        </button>
       </p>
     </div>
   </form>

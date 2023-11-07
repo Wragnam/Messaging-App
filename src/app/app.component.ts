@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 /**
@@ -9,18 +9,24 @@ import { Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   /**
    * Title of site
    */
   title = 'My Messenger';
+  loggedIn = false;
+
 
   constructor(private router: Router){}
+  ngOnInit(): void {
+
+  }
 
   /*
   * Get user from session storage, if there is no user, user will equal null
   */ 
   user = sessionStorage.getItem("User");
+
 
   /**
    * Angular @ViewChild Decorator
