@@ -2,12 +2,12 @@
   <form [formGroup]="loginForm" (ngSubmit)="login()" class="form">
     <div class="field">
       <p class="control has-icons-left has-icons-right">
-        <label class="input-label">Username: </label>
+        <label class="input-label">Email: </label>
         <input
           class="input"
           type="text"
-          placeholder="Username"
-          formControlName="username"
+          placeholder="Email"
+          formControlName="email"
         />
         <span class="icon is-small is-left">
           <i class="fas fa-envelope"></i>
@@ -46,5 +46,8 @@
         </button>
       </p>
     </div>
+    <p *ngIf="message" class="notification" [ngClass]="{'is-success': message === 'Login Succussful!', 'is-danger': message != 'Login Successful!'}">
+      {{message}}
+    </p>
   </form>
 </body>

@@ -11,23 +11,34 @@ import { UserEntry } from '../models/user.model';
 })
 export class LoginComponent implements OnInit{
   
-  userEntries: UserEntry[] = [];
+  userEntries: Map<string, UserEntry> = new Map();
   loginForm: FormGroup;
+  message: string | null = null;
 
   
   constructor(private router: Router, private formBuilder: FormBuilder, private userDataService: UserDataService){}
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      username: new FormControl(null, [Validators.required]),
+      email: new FormControl(null, [Validators.required]),
       password: new FormControl(null, [Validators.required]),
       staySignedIn: new FormControl().valid
     });
-    this.userEntries = this.userDataService.userEntries;
+    this.userEntries = this.userDataService.getUsers();
     console.log(this.userEntries);
   }
 
-  login(){
-    console.log(this.loginForm.value);
-    sessionStorage.setItem('loggedIn', 'true');
+  login(): void{
+    const {email, password} = this.loginForm.value;
+    const user = this.userEntries.get(email);
+
+    if(user && user.getPassword() == password){
+      this.message = "Login Successful!"
+      sessionStorage.setItem('loggedIn', 'true');
+      this.router.navigate(["/main-screen"]);
+    }else{
+      this.message = "Invalid Email or Password";
+    }
+
+    
   }
 }

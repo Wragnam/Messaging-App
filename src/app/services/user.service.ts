@@ -1,54 +1,57 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { UserEntry } from "../models/user.model";
-import { Subject } from "rxjs";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { UserEntry } from '../models/user.model';
+import { Subject } from 'rxjs';
+
+@Injectable({ providedIn: 'root' })
+export class UserDataService {
+  constructor(private http: HttpClient) {}
+
+  private userEntries: Map<string, UserEntry> = new Map([
+    [
+      'ww@gmail.com',
+      new UserEntry('Wrag', 'ww@gmail.com', 'testing', 'jhfjewlhflewh'),
+    ],
+    [
+      'pieter@gmail.com',
+      new UserEntry('Piet', 'pieter@gmail.com', 'testing', 'jhfjewlhflewh'),
+    ],
+    [
+      'llll@gmail.com',
+      new UserEntry('Pompies', 'llll@gmail.com', 'testing', 'jhfjewlhflewh'),
+    ],
+    [
+      'admin@gmail.com',
+      new UserEntry('admin', 'admin@gmail.com', 'admin', 'jhfjewlhflewh'),
+    ],
+  ]);
 
 
-@Injectable({providedIn:"root"})
-export class UserDataService{
-    constructor(private http: HttpClient){}
-
-    userEntries: UserEntry[] = [
-        new UserEntry('1','Wrag','ww@gmail.com','testing','jhfjewlhflewh'),
-        new UserEntry('12','Piet','pieter@gmail.com','testing','jhfjewlhflewh'),
-        new UserEntry('1093809','Pompies','llll@gmail.com','testing','jhfjewlhflewh'),
-        new UserEntry('1342','admin','admin@gmail.com','admin','jhfjewlhflewh'),
-
-    ]
-    userSubject = new Subject<UserEntry[]>();
+  public getUsers(): Map<string, UserEntry>{
+    return this.userEntries
+  }
 
 
-//     //List all users
-//     getAllUsers(): User[] {
-//         this.http.get<{userEntries:User[]}>('http://localhost:4200/get-users').subscribe((jsonData)=>{
-//             this.userEntries = jsonData.userEntries;
-//             this.userSubject.next(this.userEntries);
-//         });
-//         return this.userEntries;
-//     }
+  public getUser(email: string) {
+    return this.userEntries.get(email);
+  }
 
-//     getUser(username: string){
-        
-//     }
-
-
-    //Create new user
-    createUser(userEntry: UserEntry){
-       this.userEntries.push(userEntry);
-       this.userSubject.next(this.userEntries);
-
+  //Create new user
+  public createUser(userEntry: UserEntry): string {
+    if (this.getUser(userEntry.getEmail()) != null) {
+      return 'User Already Exists';
     }
+    this.userEntries.set(userEntry.getEmail(), userEntry);
+    return '';
+  }
 
-    //Update user
-    updateUser(){
-        
-    }
+  //Update user
+  public updateUser() {}
 
-//     //Delete user
-//     deleteUser(username: string){
-//         this.http.delete<{message: string}>(`http://localhost:4200/delete-user?id=${username}`).subscribe((jsonData)=>{
-//             this.getAllUsers();
-//     })
-// }
-    
+  //     //Delete user
+  //     deleteUser(username: string){
+  //         this.http.delete<{message: string}>(`http://localhost:4200/delete-user?id=${username}`).subscribe((jsonData)=>{
+  //             this.getAllUsers();
+  //     })
+  // }
 }

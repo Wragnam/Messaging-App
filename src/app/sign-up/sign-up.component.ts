@@ -33,7 +33,7 @@ checkUsername(){
 
   signUp(){
     console.log(this.signUpForm.value);
-    const newUser = new UserEntry('',this.signUpForm.value.username, this.signUpForm.value.email,this.signUpForm.value.password,this.signUpForm.value.profilePicture);
+    const newUser = new UserEntry(this.signUpForm.value.username, this.signUpForm.value.email,this.signUpForm.value.password,this.signUpForm.value.profilePicture);
     this.userDataService.createUser(newUser);
   }
 
